@@ -62,3 +62,7 @@ cm = confusion_matrix(y_test, y_pred)
 
 # Compute accuracy
 acc = (1510 + 205) / 2000
+
+# Single prediction
+new_prediction = classifier.predict(sc.transform(np.array([[0, 0, 600, 1, 40, 3, 60000, 2, 1, 1, 50000]])))
+new_prediction = (new_prediction > 0.5)
