@@ -6,10 +6,10 @@ from keras.preprocessing.image import ImageDataGenerator
 
 # Variables
 filters = 32
-input_size = (150, 150)
+input_size = (192, 192)
 batch_size = 32
 dropout_rate = 0.6
-epochs = 100
+epochs = 50
 
 # Initialization
 classifier = Sequential()
