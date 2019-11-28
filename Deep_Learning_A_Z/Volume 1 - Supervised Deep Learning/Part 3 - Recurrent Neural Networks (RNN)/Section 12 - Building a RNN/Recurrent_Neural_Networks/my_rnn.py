@@ -41,19 +41,23 @@ from keras.layers import Dropout
 regressor = Sequential()
 
 # Adding first LSTM layer and Dropout regularisation
-regressor.add(LSTM(units=50, return_sequences=True, input_shape=(X_train.shape[1], 1)))
+regressor.add(LSTM(units=100, return_sequences=True, input_shape=(X_train.shape[1], 1)))
 regressor.add(Dropout(0.2))
 
 # Adding second LSTM layer and Dropout regularisation
-regressor.add(LSTM(units=50, return_sequences=True))
+regressor.add(LSTM(units=100, return_sequences=True))
 regressor.add(Dropout(0.2))
 
 # Adding third LSTM layer and some Dropout regularisation
-regressor.add(LSTM(units=50, return_sequences=True))
+regressor.add(LSTM(units=100, return_sequences=True))
 regressor.add(Dropout(0.2))
 
 # Adding fourth LSTM layer and some Dropout regularisation
-regressor.add(LSTM(units=50))
+regressor.add(LSTM(units=100, return_sequences=True))
+regressor.add(Dropout(0.2))
+
+# Adding fifth LSTM layer and some Dropout regularisation
+regressor.add(LSTM(units=100))
 regressor.add(Dropout(0.2))
 
 # Adding output layer
