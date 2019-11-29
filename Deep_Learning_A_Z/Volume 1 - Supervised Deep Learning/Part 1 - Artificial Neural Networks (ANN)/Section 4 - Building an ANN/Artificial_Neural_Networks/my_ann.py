@@ -35,7 +35,7 @@ from keras.models import Sequential
 from keras.layers import Dense
 from keras.layers import Dropout
 
-# Initializing NN
+# Initializing ANN
 classifier = Sequential()
 
 # Adding input layer and first hidden layer
