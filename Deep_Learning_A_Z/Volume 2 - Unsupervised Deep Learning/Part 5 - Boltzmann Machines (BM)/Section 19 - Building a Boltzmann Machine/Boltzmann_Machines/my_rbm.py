@@ -32,8 +32,9 @@ test_set = pd.read_csv('Deep_Learning_A_Z/Volume 2 - Unsupervised Deep Learning/
 test_set = np.array(test_set, dtype='int')
 
 # Getting number of users and movies
-nb_users = max(max(training_set[:, 0]), max(test_set[:, 0]))
-nb_movies = max(max(training_set[:, 1]), max(test_set[:, 1]))
+nb_users = int(max(max(training_set[:, 0]), max(test_set[:, 0])))
+nb_movies = int(max(max(training_set[:, 1]), max(test_set[:, 1])))
+
 
 # Converting data into array with users in lines and movies in columns
 def convert(data):
@@ -45,6 +46,7 @@ def convert(data):
         ratings[id_movies - 1] = id_ratings
         new_data.append(ratings)
     return new_data
+
 
 training_set = convert(training_set)
 test_set = convert(test_set)
