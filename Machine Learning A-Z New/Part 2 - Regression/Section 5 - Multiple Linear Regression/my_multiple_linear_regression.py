@@ -55,3 +55,24 @@ X_opt = X[:, [0, 3]]
 regressor_OLS = sm.OLS(endog=y, exog=X_opt).fit()
 regressor_OLS.summary()
 
+
+# Automatic Backward Elimination (p-values only)
+def backward_elimination(x, sl):
+    num_vars = len(x[0])
+    for i in range(0, num_vars):
+        regressor_OLS = sm.OLS(y, x).fit()
+        max_var = max(regressor_OLS.pvalues).astype(float)
+
+        if max_var > sl:
+            for j in range(0, num_vars - i):
+                if regressor_OLS.pvalues[j].astype(float) == max_var:
+                    x = np.delete(x, j, 1)
+
+    print(regressor_OLS.summary())
+    return x
+
+
+SL = 0.05
+X_opt = X[:, [0, 1, 2, 3, 4, 5]]
+X_modeled = backward_elimination(X_opt, SL)
+
