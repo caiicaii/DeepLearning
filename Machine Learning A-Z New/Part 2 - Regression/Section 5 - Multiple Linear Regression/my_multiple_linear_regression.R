@@ -22,3 +22,40 @@ regressor = lm(formula = Profit ~ .,
 
 # Predicting Test set results
 y_pred = predict(regressor, newdata = test_set)
+
+# Optimizing model with Backward Elimination
+regressor = lm(formula = Profit ~ + R.D.Spend + Administration + Marketing.Spend + State,
+               data = dataset)
+summary(regressor)
+
+regressor = lm(formula = Profit ~ + R.D.Spend + Administration + Marketing.Spend,
+               data = dataset)
+summary(regressor)
+
+regressor = lm(formula = Profit ~ + R.D.Spend + Marketing.Spend,
+               data = dataset)
+summary(regressor)
+
+regressor = lm(formula = Profit ~ + R.D.Spend,
+               data = dataset)
+summary(regressor)
+
+# Automatic Backward Elimination
+backwardElimination <- function(x, sl) {
+  num_vars = length(x)
+  for (i in c(1:num_vars)) {
+    regressor = lm(formula = Profit ~ ., data = x)
+    max_var = max(coef(summary(regressor))[c(2:num_vars), "Pr(>|t|)"])
+    
+    if (max_var > sl) {
+      j = which(coef(summary(regressor))[c(2:num_vars), "Pr(>|t|)"] == max_var)
+      x = x[, -j]
+    }
+    num_vars = num_vars - 1
+  }
+  return(summary(regressor))
+}
+
+SL = 0.05
+dataset = dataset[, c(1, 2, 3, 4, 5)]
+backwardElimination(training_set, SL)
