@@ -16,6 +16,9 @@ split = sample.split(dataset$Profit, SplitRatio = 0.8)
 training_set = subset(dataset, split == TRUE)
 test_set = subset(dataset, split == FALSE)
 
-# Feature Scaling
-# training_set = scale(training_set)
-# test_set = scale(test_set)
+# Fitting Multiple Linear Regression to Training set
+regressor = lm(formula = Profit ~ .,
+               data = training_set)
+
+# Predicting Test set results
+y_pred = predict(regressor, newdata = test_set)
