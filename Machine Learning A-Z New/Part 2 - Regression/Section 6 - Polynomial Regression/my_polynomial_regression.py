@@ -22,3 +22,11 @@ poly_reg = PolynomialFeatures(degree=2)
 X_poly = poly_reg.fit_transform(X)
 lin_reg_2 = LinearRegression()
 lin_reg_2.fit(X_poly, y)
+
+# Visualizing Linear Regression results
+plt.scatter(X, y, color='red')
+plt.plot(X, lin_reg.predict(X), color='blue')
+plt.title("Truth or Bluff (Linear Regression)")
+plt.xlabel('Position Level')
+plt.ylabel('Salary')
+plt.show()
