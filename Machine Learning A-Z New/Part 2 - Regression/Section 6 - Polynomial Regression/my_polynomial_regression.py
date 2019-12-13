@@ -13,11 +13,13 @@ y = dataset.iloc[:, 2].values
 
 # Fitting Linear Regression to dataset
 from sklearn.linear_model import LinearRegression
+
 lin_reg = LinearRegression()
 lin_reg.fit(X, y)
 
 # Fitting Polynomial Regression to dataset
 from sklearn.preprocessing import PolynomialFeatures
+
 poly_reg = PolynomialFeatures(degree=5)
 X_poly = poly_reg.fit_transform(X)
 lin_reg_2 = LinearRegression()
