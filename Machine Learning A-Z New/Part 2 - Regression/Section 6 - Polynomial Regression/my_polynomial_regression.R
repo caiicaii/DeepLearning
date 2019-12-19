@@ -21,3 +21,17 @@ dataset$Level2 = dataset$Level^2
 dataset$Level3 = dataset$Level^3
 poly_reg = lm(formula = Salary ~ .,
               data = dataset)
+
+# Visualizing Linear Regression results
+# install.packages('ggplot2')
+library(ggplot2)
+ggplot() +
+  geom_point(aes(x = dataset$Level, y = dataset$Salary),
+             colour = 'red') +
+  geom_line(aes(x = dataset$Level, y = predict(lin_reg, newdata = dataset)),
+            colour = 'blue') +
+  ggtitle('Truth or Bluff (Linear Regression)') +
+  xlab('Level') +
+  ylab('Salary')
+
+# Visualizing Polynomial Regression results
