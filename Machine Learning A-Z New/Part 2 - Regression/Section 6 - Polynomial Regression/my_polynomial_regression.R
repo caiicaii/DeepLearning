@@ -19,6 +19,7 @@ lin_reg = lm(formula = Salary ~ .,
 # Fitting Polynomial Regression to dataset
 dataset$Level2 = dataset$Level^2
 dataset$Level3 = dataset$Level^3
+dataset$Level4 = dataset$Level^4
 poly_reg = lm(formula = Salary ~ .,
               data = dataset)
 
@@ -35,3 +36,11 @@ ggplot() +
   ylab('Salary')
 
 # Visualizing Polynomial Regression results
+ggplot() +
+  geom_point(aes(x = dataset$Level, y = dataset$Salary),
+             colour = 'red') +
+  geom_line(aes(x = dataset$Level, y = predict(poly_reg, newdata = dataset)),
+            colour = 'blue') +
+  ggtitle('Truth or Bluff (Polynomial Regression)') +
+  xlab('Level') +
+  ylab('Salary')
